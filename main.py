@@ -15,7 +15,7 @@ def file_reader(file: str):
 def get_shop_list_by_dishes(dishes: list, person_count):
     shoplist = {}
     for food in dishes:
-        for i in file_reader("cookbook.txt").get(food):
+        for i in cook_book.get(food):
             if i["ingredient_name"] not in shoplist:
                 shoplist[i["ingredient_name"]] = {"quantity": i["quantity"] * person_count, "measure": i["measure"]}
             elif i['ingredient_name'] in shoplist:
@@ -24,4 +24,5 @@ def get_shop_list_by_dishes(dishes: list, person_count):
     return shoplist
 
 
-print(get_shop_list_by_dishes(["Омлет", "Запеченный картофель", "Омлет"], 5))
+cook_book = file_reader("cookbook.txt")
+print(get_shop_list_by_dishes(["Омлет", "Запеченный картофель", "Омлет"], 4))
